@@ -14,24 +14,23 @@ class Storage:
     def _init_schema(self):
         with self.engine.begin() as conn:
             conn.execute(text("""
-            CREATE TABLE IF NOT EXISTS fraze (
+            CREATE TABLE IF NOT EXISTS phrases (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 timestamp TEXT NOT NULL,
-                germana   TEXT NOT NULL,
-                romana    TEXT NOT NULL,
-                sursa     TEXT DEFAULT 'offline_vosk',
+                german   TEXT NOT NULL,
+                romanian TEXT NOT NULL,
+                source   TEXT DEFAULT 'offline_vosk',
                 confidence REAL
             );
             """))
 
-    def save_phrase(self, germana: str, romana: str, sursa: str = "offline_vosk", confidence: float | None = None):
+    def save_phrase(self, german: str, romanian: str, source: str = "offline_vosk", confidence: float | None = None):
         ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
         df = pd.DataFrame([{
-            "timestamp": ts, "germana": germana, "romana": romana,
-            "sursa": sursa, "confidence": confidence
+            "timestamp": ts, "german": german, "romanian": romanian,
+            "source": source, "confidence": confidence
         }])
-        df.to_sql("fraze", self.engine, if_exists="append", index=False)
+        df.to_sql("phrases", self.engine, if_exists="append", index=False)
         if self.excel_path.exists():
             old = pd.read_excel(self.excel_path)
             out = pd.concat([old, df], ignore_index=True)
@@ -41,5 +40,5 @@ class Storage:
         return ts
 
     def list_last(self, limit=10):
-        query = f"SELECT * FROM fraze ORDER BY id DESC LIMIT {limit}"
+        query = f"SELECT * FROM phrases ORDER BY id DESC LIMIT {limit}"
         return pd.read_sql(query, self.engine)
