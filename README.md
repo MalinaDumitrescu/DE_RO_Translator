@@ -6,12 +6,12 @@ It listens to German speech, transcribes it with [Vosk](https://alphacephei.com/
 ---
 
 ## Features
-- 🎤 **Offline German speech recognition** (Vosk small German model)  
-- 🌍 **German → Romanian translation** via Argos Translate (DE→EN→RO pivot)  
-- 💾 **Storage** of phrases in:
+-  **Offline German speech recognition** (Vosk small German model)  
+-  **German → Romanian translation** via Argos Translate (DE→EN→RO pivot)  
+-  **Storage** of phrases in:
   - SQLite database (`data/fraze_de_ro.sqlite`)
   - Excel file (`data/fraze_de_ro.xlsx`)
-- ⚡ Real-time console output:
+-  Real-time console output:
 
 [DE] guten tag
 [RO] bună ziua
@@ -20,7 +20,7 @@ It listens to German speech, transcribes it with [Vosk](https://alphacephei.com/
 ---
 
 ## Motivation
-Honestly, I built this because I am too lazy when reading books in German 😅.  
+Honestly, I built this because I am too lazy when reading books in German .  
 Instead of looking up words in a dictionary and then writing them down,  
 I created this app to recognize, translate, and save them automatically.  
 
