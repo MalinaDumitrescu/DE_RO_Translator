@@ -1,4 +1,4 @@
-# DE→RO Voice Logger
+# DE->RO Voice Logger
 
 An offline speech-to-text and translation tool built in Python.  
 It listens to German speech, transcribes it with [Vosk](https://alphacephei.com/vosk/), translates into Romanian using [Argos Translate](https://github.com/argosopentech/argos-translate), and saves both the German and Romanian text into **SQLite** and **Excel** for later review.
